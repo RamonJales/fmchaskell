@@ -37,5 +37,8 @@ max (S n) (S m) = S(max n m)
 
 pred :: Nat -> Nat
 pred O = O
-pred (S m) = n
+pred (S n) = n
 
+double :: Nat -> Nat
+double O = O
+double (S n) = (S(S(double n)))
