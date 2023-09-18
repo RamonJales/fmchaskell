@@ -10,8 +10,12 @@ sum n (S m) = S (sum n m)
 
 mult :: Nat -> Nat -> Nat
 mult n O = O
-mult n (S m) = sum (mult n m) n
+mult n (S m) = sum n (mult n m)
 
 exp :: Nat -> Nat -> Nat
 exp n O = (S O)
 exp n (S m) = mult n (exp n m)
+
+fact :: Nat -> Nat
+fact O = (S O)
+fact (S n) = mult (S n) (fact n)
