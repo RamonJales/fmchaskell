@@ -30,3 +30,8 @@ min n O = O
 min O n = O
 min (S n) (S m) = S(min n m)
 
+max :: Nat -> Nat -> Nat
+max n O = n
+max O n = n
+max (S n) (S m) = S(max n m)
+
