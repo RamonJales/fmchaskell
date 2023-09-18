@@ -35,3 +35,7 @@ max n O = n
 max O n = n
 max (S n) (S m) = S(max n m)
 
+pred :: Nat -> Nat
+pred O = O
+pred (S m) = n
+
