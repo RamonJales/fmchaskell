@@ -45,4 +45,14 @@ double (S n) = (S(S(double n)))
 
 minus :: Nat -> Nat -> Nat
 minus n O = n
-minus (S n) (S m) = minus (max (n) (m)) (min (n) (m))
+minus n (S m) = Pred (minus n m)
+
+--[Não dá para colocar um crédito específico por essa função, pois uma carrada de gente discutiu sobre ela em monitorias e salas de estudo]
+quot :: Nat -> Nat -> Nat
+quot n m = quot' n m m
+where
+    quot' :: Nat -> Nat -> Nat -> Nat
+    quot' O O k = S O
+    quot' O m k = O
+    quot' n O k = S (quot' n k k)
+    quot' (S n) (S n) k = quot'n m k
