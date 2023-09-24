@@ -69,3 +69,8 @@ rem m n = rem' m (n * (quot m n))
 
 div :: Nat × Nat → Nat × Nat
 rem n m = (quot n m, rem n m)
+
+gcd :: Nat × Nat → Nat
+gcd n O = n;
+gcd n m = gcd n (rem n m)
+
