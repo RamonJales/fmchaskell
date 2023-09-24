@@ -67,4 +67,5 @@ rem m n = rem' m (n * (quot m n))
     rem' (S m) (S n) = rem' m n
     rem' m O = m
 
-
+div :: Nat × Nat → Nat × Nat
+rem n m = (quot n m, rem n m)
