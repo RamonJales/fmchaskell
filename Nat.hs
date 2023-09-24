@@ -47,7 +47,7 @@ minus :: Nat -> Nat -> Nat
 minus n O = n
 minus n (S m) = Pred (minus n m)
 
---[Não dá para colocar um crédito específico por essa função, pois uma carrada de gente discutiu sobre ela em monitorias e salas de estudo]
+--[Essa questão merece créditos, mas não dá para colocar um crédito em específico, pois muita gente discutiu sobre ela em monitorias e salas de estudo]
 quot :: Nat -> Nat -> Nat
 quot n m = quot' n m m
 where
@@ -56,3 +56,15 @@ where
     quot' O m k = O
     quot' n O k = S (quot' n k k)
     quot' (S n) (S n) k = quot'n m k
+
+--[De novo, não tenho total crédito na criação dessa função]
+rem :: Nat -> Nat -> Nat
+rem O n = O
+rem (S m) O = S (rem m O)
+rem m n = rem' m (n * (quot m n))
+  where
+    rem' :: Nat -> Nat -> Nat
+    rem' (S m) (S n) = rem' m n
+    rem' m O = m
+
+
