@@ -72,5 +72,9 @@ rem n m = (quot n m, rem n m)
 
 gcd :: Nat × Nat → Nat
 gcd n O = n;
-gcd n m = gcd n (rem n m)
+gcd n m = gcd n (rem n m) -- Algoritmo de Euclides
 
+-- [Discutido em salas de estudos e monitorias também]
+lcm :: Nat × Nat → Nat
+lcm n O = O
+lcm n m = div (mult n m) (gcd n m)
