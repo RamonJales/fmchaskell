@@ -22,4 +22,9 @@ _ == _ = False
 ev :: Nat -> Bool
 ev O = True
 ev (S O) = False
-ev (S(S n)) = ev n 
+ev (S(S n)) = ev n
+
+od :: Nat -> Bool
+od (S O) = True
+od O = False
+od (S(S n)) = od n
