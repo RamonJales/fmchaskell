@@ -19,5 +19,7 @@ O == O = True
 (S n) == (S m) = n == m
 _ == _ = False
 
-
--- ev :: Nat -> Bool
+ev :: Nat -> Bool
+ev O = True
+ev (S O) = False
+ev (S(S n)) = ev n 
