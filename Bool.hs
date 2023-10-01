@@ -41,3 +41,6 @@ natToBool O = False
 divides :: Nat -> Nat -> Bool
 divides n m = natToBool (if_then_else ((rem n m) == O) (S O) O)
 
+isZero :: Nat -> Bool
+isZero O = True
+isZero _ = False
