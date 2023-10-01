@@ -1,6 +1,6 @@
 module Bool where
 import Nat
-import Prelude hiding (if_then_else, leq, (==), False, True, Bool, ev, od, isMul3)
+import Prelude hiding (if_then_else, leq, (==), False, True, Bool, ev, od, isMul3, divides, rem)
 
 data Bool = False | True
     deriving ( Eq , Show )
@@ -33,3 +33,11 @@ isMul3 :: Nat -> Bool
 isMul3 (S(S(S n))) = isMul3 n
 isMul3 O = True
 isMul3 _ = False
+
+natToBool :: Nat -> Bool
+natToBool (S O) = True
+natToBool O = False
+
+divides :: Nat -> Nat -> Bool
+divides n m = natToBool (if_then_else ((rem n m) == O) (S O) O)
+
