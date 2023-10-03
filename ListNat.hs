@@ -24,3 +24,7 @@ binaryConcat (Cons x xs) ys = Cons x (binaryConcat xs ys)
 elem :: Nat -> ListNat -> Bool
 elem _ Empty = False
 elem n (Cons x xs) = if (n == x) then True else (elem n xs)
+
+append :: Nat -> ListNat -> ListNat
+append n Empty = Cons n Empty
+append n (Cons x xs) = Cons x (append n xs)
