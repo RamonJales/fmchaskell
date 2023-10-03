@@ -1,5 +1,7 @@
 module Nat where
-import Prelude hiding (sum, mult, exp, quot, min, gcd, lcm, div, max, pred, rem, minus)
+import Prelude hiding (sum, mult, exp, quot, min, gcd, lcm, div, max, pred, rem, minus, 
+  if_then_else, leq, (==), False, True, Bool, ev, od, isMul3, divides)
+import Bool
 
 data Nat = O | S Nat
     deriving (Eq , Show)
@@ -47,22 +49,28 @@ minus :: Nat -> Nat -> Nat
 minus n O = n
 minus n (S m) = pred (minus n m)
 
--- Função usando o Bool do Haskell
-leq ::  Nat -> Nat -> Bool
-leq O _ = True
-leq _ O = False
-leq (S n) (S m) = leq n m
+--[Essa questão merece créditos, mas não dá para colocar um crédito em específico, pois muita gente discutiu sobre ela em monitorias e salas de estudo]
+quot :: Nat -> Nat -> Nat
+quot n m = quot' n m m
+  where
+    quot' :: Nat -> Nat -> Nat -> Nat
+    quot' O O k = S O
+    quot' O m k = O
+    quot' n O k = S (quot' n k k)
+    quot' (S n) (S m) k = quot' n m k
+
+--[De novo, não tenho total crédito na criação dessa função]
+rem :: Nat -> Nat -> Nat
+rem O n = O
+rem (S m) O = S (rem m O)
+rem m n = rem' m (mult n (quot m n))
+  where
+    rem' :: Nat -> Nat -> Nat
+    rem' (S m) (S n) = rem' m n
+    rem' m O = m
 
 div :: Nat -> Nat -> (Nat, Nat)
-div O _ = error "Zero is not divisor!"
-div n m = if (leq n m) then (O, n) else (S n', m')
-  where (n', m') = div (minus n m) m
-
-quot :: Nat -> Nat -> Nat
-quot n m = fst(div n m)
-
-rem :: Nat -> Nat -> Nat
-rem n m = snd(div n m)
+div n m = (quot n m, rem n m)
 
 -- Algoritmo de Euclides
 gcd :: Nat -> Nat -> Nat
@@ -74,25 +82,44 @@ lcm :: Nat -> Nat -> (Nat, Nat)
 lcm n O = (O,O)
 lcm n m = div (mult n m) (gcd n m)
 
--- --[Essa questão merece créditos, mas não dá para colocar um crédito em específico, pois muita gente discutiu sobre ela em monitorias e salas de estudo]
--- quot :: Nat -> Nat -> Nat
--- quot n m = quot' n m m
---   where
---     quot' :: Nat -> Nat -> Nat -> Nat
---     quot' O O k = S O
---     quot' O m k = O
---     quot' n O k = S (quot' n k k)
---     quot' (S n) (S m) k = quot' n m k
+-- Bool
 
--- --[De novo, não tenho total crédito na criação dessa função]
--- rem :: Nat -> Nat -> Nat
--- rem O n = O
--- rem (S m) O = S (rem m O)
--- rem m n = rem' m (mult n (quot m n))
---   where
---     rem' :: Nat -> Nat -> Nat
---     rem' (S m) (S n) = rem' m n
---     rem' m O = m
+if_then_else :: Bool -> Nat -> Nat -> Nat
+if_then_else True n _ = n
+if_then_else False _ n = n
 
--- div :: Nat -> Nat -> (Nat, Nat)
--- div n m = (quot n m, rem n m)
+leq ::  Nat -> Nat -> Bool
+leq O _ = True
+leq _ O = False
+leq (S n) (S m) = leq n m
+
+(==) :: Nat-> Nat -> Bool
+O == O = True
+(S n) == (S m) = n == m
+_ == _ = False
+
+ev :: Nat -> Bool
+ev O = True
+ev (S O) = False
+ev (S(S n)) = ev n
+
+od :: Nat -> Bool
+od (S O) = True
+od O = False
+od (S(S n)) = od n
+
+isMul3 :: Nat -> Bool
+isMul3 (S(S(S n))) = isMul3 n
+isMul3 O = True
+isMul3 _ = False
+
+natToBool :: Nat -> Bool
+natToBool (S O) = True
+natToBool O = False
+
+divides :: Nat -> Nat -> Bool
+divides n m = natToBool (if_then_else ((rem n m) == O) (S O) O)
+
+isZero :: Nat -> Bool
+isZero O = True
+isZero _ = False
