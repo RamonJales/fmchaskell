@@ -49,3 +49,7 @@ allOdd (Cons x xs) = if_then_else_2 (od x) (allOdd xs) False
 anyOdd :: ListNat -> Bool
 anyOdd Empty = False
 anyOdd (Cons x xs) = if_then_else_2 (od x) True (anyOdd xs)
+
+allZero :: ListNat -> Bool
+allZero Empty = True
+allZero (Cons x xs) = if_then_else_2 (eq x O) (allZero xs) False
