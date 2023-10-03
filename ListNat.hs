@@ -36,4 +36,8 @@ reverse (Cons x xs) = append x (reverse xs)
 
 allEven :: ListNat -> Bool
 allEven Empty = True
-allEven (Cons x xs) = if_then_else_2 (eq (rem x (S(S O))) O) (allEven xs) False
+allEven (Cons x xs) = if_then_else_2 (ev x) (allEven xs) False
+
+anyEven :: ListNat -> Bool
+anyEven Empty = False
+anyEven (Cons x xs) = if_then_else_2 (ev x) True (anyEven xs)
