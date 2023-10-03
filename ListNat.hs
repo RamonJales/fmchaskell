@@ -17,10 +17,9 @@ product :: ListNat -> Nat
 product Empty = (S O)
 product (Cons x xs) = mult x (product xs)
 
-(++) :: ListNat -> ListNat -> ListNat
-xs ++ Empty = xs 
-Empty ++ xs =  xs
-(Cons x xs) ++ (Cons y ys) = Cons (sum x y) (xs ++ ys)
+binaryConcat :: ListNat -> ListNat -> ListNat
+binaryConcat Empty xs =  xs
+binaryConcat (Cons x xs) ys = Cons x (binaryConcat xs ys)
 
 elem :: Nat -> ListNat -> Bool
 elem _ Empty = False
