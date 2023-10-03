@@ -61,3 +61,7 @@ anyZero (Cons x xs) = if_then_else_2 (eq x O) True (anyZero xs)
 addNat :: Nat -> ListNat -> ListNat
 addNat _ Empty = Empty
 addNat n (Cons x xs) = (Cons (sum n x) (addNat n xs))
+
+multNat :: Nat -> ListNat -> ListNat
+multNat _ Empty = Empty
+multNat n (Cons x xs) = (Cons (mult n x) (multNat n xs))
