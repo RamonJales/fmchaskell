@@ -1,6 +1,7 @@
 module ListNat where
-import Prelude hiding(Nil, length, sum, product, elem, (++), Empty, reverse)
+import Prelude hiding(Nil, length, sum, product, elem, (++), Empty, reverse, rem, True, Bool, False)
 import Nat
+import Bool
 
 data ListNat = Empty | Cons Nat ListNat
     deriving ( Eq , Show )
@@ -23,7 +24,7 @@ binaryConcat (Cons x xs) ys = Cons x (binaryConcat xs ys)
 
 elem :: Nat -> ListNat -> Bool
 elem _ Empty = False
-elem n (Cons x xs) = if (n == x) then True else (elem n xs)
+elem n (Cons x xs) = if_then_else_2 (eq n x) True (elem n xs)
 
 append :: Nat -> ListNat -> ListNat
 append n Empty = Cons n Empty
@@ -32,3 +33,7 @@ append n (Cons x xs) = Cons x (append n xs)
 reverse :: ListNat -> ListNat
 reverse Empty = Empty
 reverse (Cons x xs) = append x (reverse xs)
+
+allEven :: ListNat -> Bool
+allEven Empty = True
+allEven (Cons x xs) = if_then_else_2 (eq (rem x (S(S O))) O) (allEven xs) False
