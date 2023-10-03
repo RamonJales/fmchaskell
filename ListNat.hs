@@ -21,3 +21,7 @@ product (Cons x xs) = mult x (product xs)
 xs ++ Empty = xs 
 Empty ++ xs =  xs
 (Cons x xs) ++ (Cons y ys) = Cons (sum x y) (xs ++ ys)
+
+elem :: Nat -> ListNat -> Bool
+elem _ Empty = False
+elem n (Cons x xs) = if (n == x) then True else (elem n xs)

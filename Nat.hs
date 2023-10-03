@@ -1,6 +1,6 @@
 module Nat where
 import Prelude hiding (sum, mult, exp, quot, min, gcd, lcm, div, max, pred, rem, minus, 
-  if_then_else, leq, (==), False, True, Bool, ev, od, isMul3, divides)
+  if_then_else, leq, eq, False, True, Bool, ev, od, isMul3, divides)
 import Bool
 
 data Nat = O | S Nat
@@ -93,10 +93,10 @@ leq O _ = True
 leq _ O = False
 leq (S n) (S m) = leq n m
 
-(==) :: Nat-> Nat -> Bool
-O == O = True
-(S n) == (S m) = n == m
-_ == _ = False
+eq :: Nat-> Nat -> Bool
+eq O O = True
+eq (S n) (S m) = eq n m
+eq _ _ = False
 
 ev :: Nat -> Bool
 ev O = True
@@ -118,7 +118,7 @@ natToBool (S O) = True
 natToBool O = False
 
 divides :: Nat -> Nat -> Bool
-divides n m = natToBool (if_then_else ((rem n m) == O) (S O) O)
+divides n m = natToBool (if_then_else (eq (rem n m) O) (S O) O)
 
 isZero :: Nat -> Bool
 isZero O = True
