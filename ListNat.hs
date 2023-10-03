@@ -41,3 +41,7 @@ allEven (Cons x xs) = if_then_else_2 (ev x) (allEven xs) False
 anyEven :: ListNat -> Bool
 anyEven Empty = False
 anyEven (Cons x xs) = if_then_else_2 (ev x) True (anyEven xs)
+
+allOdd :: ListNat -> Bool
+allOdd Empty = True
+allOdd (Cons x xs) = if_then_else_2 (od x) (allOdd xs) False
