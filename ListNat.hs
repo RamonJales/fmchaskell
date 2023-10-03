@@ -1,5 +1,5 @@
 module ListNat where
-import Prelude hiding(Nil, length, sum, product, elem, (++), Empty)
+import Prelude hiding(Nil, length, sum, product, elem, (++), Empty, reverse)
 import Nat
 
 data ListNat = Empty | Cons Nat ListNat
@@ -28,3 +28,7 @@ elem n (Cons x xs) = if (n == x) then True else (elem n xs)
 append :: Nat -> ListNat -> ListNat
 append n Empty = Cons n Empty
 append n (Cons x xs) = Cons x (append n xs)
+
+reverse :: ListNat -> ListNat
+reverse Empty = Empty
+reverse (Cons x xs) = append x (reverse xs)
