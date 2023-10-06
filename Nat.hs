@@ -1,7 +1,6 @@
 module Nat where
 import Prelude hiding (sum, mult, exp, quot, min, gcd, lcm, div, max, pred, rem, minus, 
-  if_then_else, leq, eq, False, True, Bool, ev, od, isMul3, divides)
-import Bool
+  if_then_else, leq, eq, ev, od, isMul3, divides)
 
 data Nat = O | S Nat
     deriving (Eq , Show)
@@ -49,28 +48,16 @@ minus :: Nat -> Nat -> Nat
 minus n O = n
 minus n (S m) = pred (minus n m)
 
---[Essa questão merece créditos, mas não dá para colocar um crédito em específico, pois muita gente discutiu sobre ela em monitorias e salas de estudo]
-quot :: Nat -> Nat -> Nat
-quot n m = quot' n m m
-  where
-    quot' :: Nat -> Nat -> Nat -> Nat
-    quot' O O k = S O
-    quot' O m k = O
-    quot' n O k = S (quot' n k k)
-    quot' (S n) (S m) k = quot' n m k
-
---[De novo, não tenho total crédito na criação dessa função]
-rem :: Nat -> Nat -> Nat
-rem O n = O
-rem (S m) O = S (rem m O)
-rem m n = rem' m (mult n (quot m n))
-  where
-    rem' :: Nat -> Nat -> Nat
-    rem' (S m) (S n) = rem' m n
-    rem' m O = m
-
 div :: Nat -> Nat -> (Nat, Nat)
-div n m = (quot n m, rem n m)
+div _ O = error "Zero is not divisor!"
+div n m = if (leq n m) then (O, n) else (S n', m')
+  where (n', m') = div (minus n m) m
+
+quot :: Nat -> Nat -> Nat
+quot n m = fst(div n m)
+
+rem :: Nat -> Nat -> Nat
+rem n m = snd(div n m)
 
 -- Algoritmo de Euclides
 gcd :: Nat -> Nat -> Nat
@@ -83,10 +70,6 @@ lcm n O = (O,O)
 lcm n m = div (mult n m) (gcd n m)
 
 -- Bool
-
-if_then_else :: Bool -> Nat -> Nat -> Nat
-if_then_else True n _ = n
-if_then_else False _ n = n
 
 leq ::  Nat -> Nat -> Bool
 leq O _ = True
@@ -118,7 +101,7 @@ natToBool (S O) = True
 natToBool O = False
 
 divides :: Nat -> Nat -> Bool
-divides n m = natToBool (if_then_else (eq (rem n m) O) (S O) O)
+divides n m = natToBool (if (eq (rem n m) O) then (S O) else O)
 
 isZero :: Nat -> Bool
 isZero O = True

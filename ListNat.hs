@@ -1,7 +1,6 @@
 module ListNat where
-import Prelude hiding(Nil, length, sum, product, elem, (++), Empty, reverse, rem, True, Bool, False, exp)
+import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp)
 import Nat
-import Bool
 
 data ListNat = Empty | Cons Nat ListNat
     deriving ( Eq , Show )
@@ -24,7 +23,7 @@ binaryConcat (Cons x xs) ys = Cons x (binaryConcat xs ys)
 
 elem :: Nat -> ListNat -> Bool
 elem _ Empty = False
-elem n (Cons x xs) = if_then_else_2 (eq n x) True (elem n xs)
+elem n (Cons x xs) = if eq n x then True else elem n xs
 
 append :: Nat -> ListNat -> ListNat
 append n Empty = Cons n Empty
@@ -36,27 +35,27 @@ reverse (Cons x xs) = append x (reverse xs)
 
 allEven :: ListNat -> Bool
 allEven Empty = True
-allEven (Cons x xs) = if_then_else_2 (ev x) (allEven xs) False
+allEven (Cons x xs) = if ev x then allEven xs else  False
 
 anyEven :: ListNat -> Bool
 anyEven Empty = False
-anyEven (Cons x xs) = if_then_else_2 (ev x) True (anyEven xs)
+anyEven (Cons x xs) = if ev x then True else anyEven xs
 
 allOdd :: ListNat -> Bool
 allOdd Empty = True
-allOdd (Cons x xs) = if_then_else_2 (od x) (allOdd xs) False
+allOdd (Cons x xs) = if od x then allOdd xs else False
 
 anyOdd :: ListNat -> Bool
 anyOdd Empty = False
-anyOdd (Cons x xs) = if_then_else_2 (od x) True (anyOdd xs)
+anyOdd (Cons x xs) = if od x then True else anyOdd xs
 
 allZero :: ListNat -> Bool
 allZero Empty = True
-allZero (Cons x xs) = if_then_else_2 (eq x O) (allZero xs) False
+allZero (Cons x xs) = if eq x O then allZero xs else False
 
 anyZero :: ListNat -> Bool
 anyZero Empty = False
-anyZero (Cons x xs) = if_then_else_2 (eq x O) True (anyZero xs)
+anyZero (Cons x xs) = if eq x O then True else anyZero xs
 
 addNat :: Nat -> ListNat -> ListNat
 addNat _ Empty = Empty
@@ -69,3 +68,4 @@ multNat n (Cons x xs) = (Cons (mult n x) (multNat n xs))
 expNat :: Nat -> ListNat -> ListNat
 expNat _ Empty = Empty
 expNat n (Cons x xs) = (Cons (exp n x) (expNat n xs))
+
