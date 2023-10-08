@@ -72,6 +72,7 @@ lcm n m = div (mult n m) (gcd n m)
 -- Bool
 
 leq ::  Nat -> Nat -> Bool
+leq O O = False
 leq O _ = True
 leq _ O = False
 leq (S n) (S m) = leq n m
