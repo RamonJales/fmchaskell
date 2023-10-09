@@ -71,3 +71,6 @@ expNat n (Cons x xs) = (Cons (exp n x) (expNat n xs))
 
 enumFromTo :: Nat -> Nat -> ListNat
 enumFromTo n m = if leq m n then Empty else Cons n (enumFromTo (sum n (S O)) m)
+
+enumTo :: Nat -> ListNat
+enumTo n = enumFromTo O n
