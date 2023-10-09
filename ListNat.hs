@@ -74,3 +74,7 @@ enumFromTo n m = if leq m n then Empty else Cons n (enumFromTo (sum n (S O)) m)
 
 enumTo :: Nat -> ListNat
 enumTo n = enumFromTo O n
+
+pwAdd :: ListNat -> ListNat -> ListNat
+pwAdd Empty xs = xs
+pwAdd (Cons x xs) (Cons y ys) = Cons (sum x y) (pwAdd xs ys)
