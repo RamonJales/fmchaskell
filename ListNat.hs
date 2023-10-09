@@ -82,3 +82,7 @@ pwAdd (Cons x xs) (Cons y ys) = Cons (sum x y) (pwAdd xs ys)
 pwMult :: ListNat -> ListNat -> ListNat
 pwMult Empty xs = xs
 pwMult (Cons x xs) (Cons y ys) = Cons (mult x y) (pwMult xs ys)
+
+isSorted :: ListNat -> Bool
+isSorted (Cons x Empty) = True
+isSorted (Cons x (Cons y l)) = if leq x y then isSorted (Cons y l) else False
