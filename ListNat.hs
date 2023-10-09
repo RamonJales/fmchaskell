@@ -78,3 +78,7 @@ enumTo n = enumFromTo O n
 pwAdd :: ListNat -> ListNat -> ListNat
 pwAdd Empty xs = xs
 pwAdd (Cons x xs) (Cons y ys) = Cons (sum x y) (pwAdd xs ys)
+
+pwMult :: ListNat -> ListNat -> ListNat
+pwMult Empty xs = xs
+pwMult (Cons x xs) (Cons y ys) = Cons (mult x y) (pwMult xs ys)
