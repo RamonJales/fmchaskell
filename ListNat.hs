@@ -81,7 +81,7 @@ drop n (Cons x xs) = if eq n x then xs else Cons x (drop n xs)
 
 -- elemIndices :: Nat -> ListNat -> ListNat
 -- elemIndices _ Empty = Empty
--- elemIndices n (Cons x xs) = 
+-- elemIndices n (Cons x xs) = if eq n x then drop  x xs else 
 
 pwAdd :: ListNat -> ListNat -> ListNat
 pwAdd Empty xs = xs
@@ -94,3 +94,7 @@ pwMult (Cons x xs) (Cons y ys) = Cons (mult x y) (pwMult xs ys)
 isSorted :: ListNat -> Bool
 isSorted (Cons x Empty) = True
 isSorted (Cons x (Cons y l)) = if leq x y then isSorted (Cons y l) else False
+
+filterEven :: ListNat -> ListNat
+filterEven Empty = Empty
+filterEven (Cons x xs) = if ev x then Cons x (filterEven xs) else filterEven xs
