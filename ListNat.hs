@@ -1,5 +1,5 @@
 module ListNat where
-import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo, drop)
+import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo, drop, head, tail)
 import Nat
 
 data ListNat = Empty | Cons Nat ListNat
@@ -102,3 +102,7 @@ filterEven (Cons x xs) = if ev x then Cons x (filterEven xs) else filterEven xs
 filterOdd :: ListNat -> ListNat
 filterOdd Empty = Empty
 filterOdd (Cons x xs) = if od x then Cons x (filterOdd xs) else filterOdd xs
+
+head :: ListNat -> Nat
+head Empty = error "Empty List has not a head"
+head (Cons x xs) = x
