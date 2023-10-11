@@ -98,3 +98,7 @@ isSorted (Cons x (Cons y l)) = if leq x y then isSorted (Cons y l) else False
 filterEven :: ListNat -> ListNat
 filterEven Empty = Empty
 filterEven (Cons x xs) = if ev x then Cons x (filterEven xs) else filterEven xs
+
+filterOdd :: ListNat -> ListNat
+filterOdd Empty = Empty
+filterOdd (Cons x xs) = if od x then Cons x (filterOdd xs) else filterOdd xs
