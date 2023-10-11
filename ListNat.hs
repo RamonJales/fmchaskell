@@ -1,5 +1,5 @@
 module ListNat where
-import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo)
+import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo, drop)
 import Nat
 
 data ListNat = Empty | Cons Nat ListNat
@@ -74,6 +74,14 @@ enumFromTo n m = if leq m n then Empty else Cons n (enumFromTo (sum n (S O)) m)
 
 enumTo :: Nat -> ListNat
 enumTo n = enumFromTo O n
+
+drop :: Nat -> ListNat -> ListNat
+drop _ Empty = Empty
+drop n (Cons x xs) = if eq n x then xs else Cons x (drop n xs)
+
+-- elemIndices :: Nat -> ListNat -> ListNat
+-- elemIndices _ Empty = Empty
+-- elemIndices n (Cons x xs) = 
 
 pwAdd :: ListNat -> ListNat -> ListNat
 pwAdd Empty xs = xs
