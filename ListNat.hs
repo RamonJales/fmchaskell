@@ -106,3 +106,7 @@ filterOdd (Cons x xs) = if od x then Cons x (filterOdd xs) else filterOdd xs
 head :: ListNat -> Nat
 head Empty = error "Empty List has not a head"
 head (Cons x xs) = x
+
+tail :: ListNat -> ListNat
+tail Empty = error "Empty List has not a tail"
+tail (Cons x xs) = xs
