@@ -1,5 +1,6 @@
 module ListNat where
-import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo, drop, head, tail, init, last, take)
+import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo, drop, head, tail, init, last, take, minimum,
+    min)
 import Nat
 
 data ListNat = Empty | Cons Nat ListNat
@@ -126,3 +127,8 @@ last :: ListNat -> Nat
 last Empty = error "Empty List has not a last"
 last (Cons x Empty) = x
 last (Cons _ xs) = last xs
+
+minimum :: ListNat -> Nat
+minimum Empty = error "Empty List has not a minimum"
+minimum (Cons x Empty) = x
+minimum (Cons x xs) = min x (minimum xs)
