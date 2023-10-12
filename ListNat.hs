@@ -88,8 +88,8 @@ pwAdd (Cons x xs) (Cons y ys) = Cons (sum x y) (pwAdd xs ys)
 pwAdd _ _ = Empty
 
 pwMult :: ListNat -> ListNat -> ListNat
-pwMult Empty xs = xs
 pwMult (Cons x xs) (Cons y ys) = Cons (mult x y) (pwMult xs ys)
+pwMult _ _ = Empty
 
 isSorted :: ListNat -> Bool
 isSorted (Cons x Empty) = True
@@ -105,13 +105,13 @@ filterOdd (Cons x xs) = if od x then Cons x (filterOdd xs) else filterOdd xs
 
 head :: ListNat -> Nat
 head Empty = error "Empty List has not a head"
-head (Cons x xs) = x
+head (Cons x _) = x
 
 tail :: ListNat -> ListNat
 tail Empty = error "Empty List has not a tail"
-tail (Cons x xs) = xs
+tail (Cons _ xs) = xs
 
 init :: ListNat -> ListNat
 init Empty = error "Empty List has not a init"
-init (Cons y (Cons x Empty)) = Cons y Empty
+init (Cons x Empty) = Empty
 init (Cons x xs) = Cons x (init xs)
