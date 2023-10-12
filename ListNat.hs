@@ -137,3 +137,7 @@ maximum :: ListNat -> Nat
 maximum Empty = error "Empty List has not a maximum"
 maximum (Cons x Empty) = x
 maximum (Cons x xs) = max x (maximum xs)
+
+isPrefixOf :: ListNat -> ListNat -> Bool
+isPrefixOf Empty _ = True
+isPrefixOf (Cons x xs) (Cons y ys) = if eq x y then isPrefixOf xs ys else False
