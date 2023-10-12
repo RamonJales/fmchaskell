@@ -146,3 +146,7 @@ mix :: ListNat -> ListNat -> ListNat
 mix Empty xs = xs
 mix xs Empty = xs
 mix (Cons x xs) (Cons y ys) = Cons x (Cons y (mix xs ys))
+
+intersperse :: Nat -> ListNat -> ListNat
+intersperse _ Empty = Empty
+intersperse n (Cons x xs) = Cons x (Cons n (intersperse n xs))
