@@ -83,9 +83,12 @@ drop :: Nat -> ListNat -> ListNat
 drop _ Empty = Empty
 drop n (Cons x xs) = if eq n x then xs else Cons x (drop n xs)
 
--- elemIndices :: Nat -> ListNat -> ListNat
--- elemIndices _ Empty = Empty
--- elemIndices n (Cons x xs) = if eq n x then drop  x xs else 
+elemIndices :: Nat -> ListNat -> ListNat
+elemIndices n xs = elemIndices' n xs O
+    where
+        elemIndices' :: Nat -> ListNat -> Nat -> ListNat
+        elemIndices' _ Empty _ = Empty
+        elemIndices' n (Cons x xs) k = if eq n x then Cons k (elemIndices' n xs (S k)) else elemIndices' n xs (S k)
 
 pwAdd :: ListNat -> ListNat -> ListNat 
 pwAdd (Cons x xs) (Cons y ys) = Cons (sum x y) (pwAdd xs ys)
