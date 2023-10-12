@@ -80,8 +80,7 @@ take (S n) (Cons x xs) = Cons x (take n xs)
 take _ _ = Empty
 
 drop :: Nat -> ListNat -> ListNat
-drop _ Empty = Empty
-drop n (Cons x xs) = if eq n x then xs else Cons x (drop n xs)
+drop (S n) (Cons x xs) = Cons x (take n xs)
 
 elemIndices :: Nat -> ListNat -> ListNat
 elemIndices n xs = elemIndices' n xs O
