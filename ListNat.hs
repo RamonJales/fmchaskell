@@ -1,5 +1,5 @@
 module ListNat where
-import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo, drop, head, tail)
+import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo, drop, head, tail, init)
 import Nat
 
 data ListNat = Empty | Cons Nat ListNat
@@ -83,9 +83,9 @@ drop n (Cons x xs) = if eq n x then xs else Cons x (drop n xs)
 -- elemIndices _ Empty = Empty
 -- elemIndices n (Cons x xs) = if eq n x then drop  x xs else 
 
-pwAdd :: ListNat -> ListNat -> ListNat
-pwAdd Empty xs = xs
+pwAdd :: ListNat -> ListNat -> ListNat 
 pwAdd (Cons x xs) (Cons y ys) = Cons (sum x y) (pwAdd xs ys)
+pwAdd _ _ = Empty
 
 pwMult :: ListNat -> ListNat -> ListNat
 pwMult Empty xs = xs
@@ -110,3 +110,8 @@ head (Cons x xs) = x
 tail :: ListNat -> ListNat
 tail Empty = error "Empty List has not a tail"
 tail (Cons x xs) = xs
+
+init :: ListNat -> ListNat
+init Empty = error "Empty List has not a init"
+init (Cons y (Cons x Empty)) = Cons y Empty
+init (Cons x xs) = Cons x (init xs)
