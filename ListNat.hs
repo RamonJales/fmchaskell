@@ -141,3 +141,8 @@ maximum (Cons x xs) = max x (maximum xs)
 isPrefixOf :: ListNat -> ListNat -> Bool
 isPrefixOf Empty _ = True
 isPrefixOf (Cons x xs) (Cons y ys) = if eq x y then isPrefixOf xs ys else False
+
+mix :: ListNat -> ListNat -> ListNat
+mix Empty xs = xs
+mix xs Empty = xs
+mix (Cons x xs) (Cons y ys) = Cons x (Cons y (mix xs ys))
