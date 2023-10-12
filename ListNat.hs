@@ -1,5 +1,5 @@
 module ListNat where
-import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo, drop, head, tail, init)
+import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo, drop, head, tail, init, last)
 import Nat
 
 data ListNat = Empty | Cons Nat ListNat
@@ -115,3 +115,8 @@ init :: ListNat -> ListNat
 init Empty = error "Empty List has not a init"
 init (Cons x Empty) = Empty
 init (Cons x xs) = Cons x (init xs)
+
+last :: ListNat -> Nat
+last Empty = error "Empty List has not a last"
+last (Cons x Empty) = x
+last (Cons _ xs) = last xs
