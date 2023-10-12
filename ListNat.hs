@@ -1,6 +1,6 @@
 module ListNat where
 import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo, drop, head, tail, init, last, take, minimum,
-    min)
+    min, maximum, max)
 import Nat
 
 data ListNat = Empty | Cons Nat ListNat
@@ -132,3 +132,8 @@ minimum :: ListNat -> Nat
 minimum Empty = error "Empty List has not a minimum"
 minimum (Cons x Empty) = x
 minimum (Cons x xs) = min x (minimum xs)
+
+maximum :: ListNat -> Nat
+maximum Empty = error "Empty List has not a maximum"
+maximum (Cons x Empty) = x
+maximum (Cons x xs) = max x (maximum xs)
