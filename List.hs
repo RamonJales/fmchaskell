@@ -13,6 +13,12 @@ map :: (a -> b) -> List a -> List b
 map f Empty = Empty
 map f (Cons x xs) = Cons (f x) (map f xs)
 
+filter :: (a -> Bool) -> List a -> List a
+filter f Empty = Empty
+filter f (Cons x xs)
+    | f x = Cons x (filter f xs)
+    | otherwise = filter f xs
+
 append :: a -> List a -> List a
 append n Empty = Cons n Empty
 append n (Cons x xs) = Cons x (append n xs)
