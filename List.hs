@@ -25,3 +25,7 @@ append n (Cons x xs) = Cons x (append n xs)
 
 onlyEven :: List Nat -> List Nat
 onlyEven xs = filter ev xs
+
+head :: List a -> Maybe a
+head Empty = Nothing
+head (Cons x _) = Just x

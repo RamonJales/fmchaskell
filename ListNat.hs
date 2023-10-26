@@ -1,7 +1,8 @@
 module ListNat where
 import Prelude hiding(length, sum, product, elem, (++), Empty, reverse, rem, exp, enumFromTo, drop, head, tail, init, last, take, minimum,
-    min, maximum, max)
+    min, maximum, max, Maybe, Nothing, Just)
 import Nat
+import Maybe
 
 data ListNat = Empty | Cons Nat ListNat
     deriving ( Eq , Show )
@@ -111,9 +112,9 @@ filterOdd :: ListNat -> ListNat
 filterOdd Empty = Empty
 filterOdd (Cons x xs) = if od x then Cons x (filterOdd xs) else filterOdd xs
 
-head :: ListNat -> Nat
-head Empty = error "Empty List has not a head"
-head (Cons x _) = x
+head :: ListNat -> Maybe Nat
+head Empty = Nothing
+head (Cons x _) = Just x
 
 tail :: ListNat -> ListNat
 tail Empty = error "Empty List has not a tail"
