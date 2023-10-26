@@ -116,9 +116,9 @@ head :: ListNat -> Maybe Nat
 head Empty = Nothing
 head (Cons x _) = Just x
 
-tail :: ListNat -> ListNat
-tail Empty = error "Empty List has not a tail"
-tail (Cons _ xs) = xs
+tail :: ListNat -> Maybe Nat
+tail Empty = Nothing
+tail (Cons _ xs) = Just xs
 
 init :: ListNat -> ListNat
 init Empty = error "Empty List has not a init"
