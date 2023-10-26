@@ -22,3 +22,6 @@ filter f (Cons x xs)
 append :: a -> List a -> List a
 append n Empty = Cons n Empty
 append n (Cons x xs) = Cons x (append n xs)
+
+onlyEven :: List Nat -> List Nat
+onlyEven xs = filter ev xs
