@@ -34,25 +34,26 @@ reverse :: ListNat -> ListNat
 reverse Empty = Empty
 reverse (Cons x xs) = append x (reverse xs)
 
+allSomething :: ListNat -> (Nat -> Bool) -> (ListNat -> Bool) -> Bool
+allSomething Empty _ _ = True
+allSomething (Cons x xs) p f = if p x then f xs else False
+
 allEven :: ListNat -> Bool
-allEven Empty = True
-allEven (Cons x xs) = if ev x then allEven xs else  False
+allEven xs = allSomething xs ev allEven
 
 anyEven :: ListNat -> Bool
 anyEven Empty = False
 anyEven (Cons x xs) = if ev x then True else anyEven xs
 
 allOdd :: ListNat -> Bool
-allOdd Empty = True
-allOdd (Cons x xs) = if od x then allOdd xs else False
+allOdd xs = allSomething xs od allOdd
 
 anyOdd :: ListNat -> Bool
 anyOdd Empty = False
 anyOdd (Cons x xs) = if od x then True else anyOdd xs
 
 allZero :: ListNat -> Bool
-allZero Empty = True
-allZero (Cons x xs) = if eq x O then allZero xs else False
+allZero xs = allSomething xs isZero allZero
 
 anyZero :: ListNat -> Bool
 anyZero Empty = False
