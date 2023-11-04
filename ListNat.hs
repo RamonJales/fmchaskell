@@ -117,12 +117,16 @@ head Empty = error "Empty List has not a head"
 head (Cons x _) = x
 
 safeHead :: ListNat -> Maybe Nat
-head Empty = Nothing
-head (cons x _) = Just x
+safeHead Empty = Nothing
+safeHead (cons x _) = Just x
 
 tail :: ListNat -> ListNat
 tail Empty = error "Empty List has not a tail"
 tail (Cons _ xs) = xs
+
+safeTail :: ListNat -> Maybe Nat
+safeTail Empty = Nothing
+safeTail (Cons _ xs) = Maybe xs 
 
 init :: ListNat -> ListNat
 init Empty = error "Empty List has not a init"
