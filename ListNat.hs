@@ -112,13 +112,17 @@ filterOdd :: ListNat -> ListNat
 filterOdd Empty = Empty
 filterOdd (Cons x xs) = if od x then Cons x (filterOdd xs) else filterOdd xs
 
-head :: ListNat -> Maybe Nat
-head Empty = Nothing
-head (Cons x _) = Just x
+head :: ListNat -> Nat
+head Empty = error "Empty List has not a head"
+head (Cons x _) = x
 
-tail :: ListNat -> Maybe Nat
-tail Empty = Nothing
-tail (Cons _ xs) = Just xs
+safeHead :: ListNat -> Maybe Nat
+head Empty = Nothing
+head (cons x _) = Just x
+
+tail :: ListNat -> ListNat
+tail Empty = error "Empty List has not a tail"
+tail (Cons _ xs) = xs
 
 init :: ListNat -> ListNat
 init Empty = error "Empty List has not a init"
